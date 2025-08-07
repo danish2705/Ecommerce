@@ -12,23 +12,23 @@ const robotoMono = Roboto_Mono({
 
 export const metadata: Metadata = {
   title: 'Book Kart',
-  description: 'This is e-commerce platform where you can buy or sell your used books',
+  description: 'This is an e-commerce platform where you can buy or sell your used books',
 };
 
-export default function RootLayout({
+const RootLayout = ({
   children,
 }: {
   children: React.ReactNode;
-}) {
-  return (
-    <html lang="en">
-      <body className={robotoMono.className}>
-        <ReactQueryProvider>
-          <Header />
-          {children}
-          <Footer />
-        </ReactQueryProvider>
-      </body>
-    </html>
-  );
-}
+}) => (
+  <html lang="en">
+    <body className={robotoMono.className}>
+      <ReactQueryProvider>
+        <Header />
+        {children}
+        <Footer />
+      </ReactQueryProvider>
+    </body>
+  </html>
+);
+
+export default RootLayout;
