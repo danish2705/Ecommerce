@@ -57,7 +57,7 @@ export default function Header() {
   const handleLogout = () => {};
 
   const menuItems = [
-    ...(user && user
+    ...(user.name && user.email
       ? [
           {
             href: "account/profile",
@@ -75,6 +75,11 @@ export default function Header() {
                 <span className="text-xs text-gray-500">{user.email}</span>
               </div>
             ),
+          },
+          {
+            icon: <LogOut className="h-5 w-5" />,
+            label: "Logout",
+            onclick: handleLogout,
           },
         ]
       : [
@@ -129,13 +134,6 @@ export default function Header() {
             label: "Help",
             href: "/how-it-works",
           },
-          ...(user && [
-            {
-              icon: <LogOut className="h-5 w-5" />,
-              label: "Logout",
-              onclick: handleLogout,
-            },
-          ]),
         ]),
   ];
 
@@ -152,7 +150,7 @@ export default function Header() {
             {item.icon}
             <span>{item?.label}</span>
             {item?.content && <div className="mt-1">{item?.content}</div>}
-            <ChevronRight className="2-4 h-4 ml-auto" />
+            <ChevronRight className="w-4 h-4 ml-auto" />
           </Link>
         ) : (
           <button
@@ -228,7 +226,7 @@ export default function Header() {
                 My Account
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-80 p-2">
+            <DropdownMenuContent className="w-80 p-2 bg-white">
               <MenuItems />
             </DropdownMenuContent>
           </DropdownMenu>
@@ -250,3 +248,4 @@ export default function Header() {
     </header>
   );
 }
+157
