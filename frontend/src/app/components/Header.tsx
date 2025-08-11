@@ -7,6 +7,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { toggleLoginDialog } from "@/store/slice/userSlice";
 import { RootState } from "@/store/store";
 import {
@@ -14,6 +21,7 @@ import {
   Heart,
   Lock,
   LogOut,
+  Menu,
   Package,
   PiggyBank,
   Search,
@@ -170,21 +178,19 @@ export default function Header() {
 
   return (
     <header className="border-b bg-white sticky top-0 z-50">
-      <div className="container w-[80%] mx-auto hidden lg:flex items-center justify-between p-4 gap-4">
+      <div className="container w-[80%] mx-auto hidden lg:flex items-center justify-between p-4">
         <Link
           href="/"
           className="flex-none inline-flex items-center w-auto max-w-fit"
         >
-          <div style={{ width: 150 }}>
-            <Image
-              src="/images/web-logo.png"
-              width={150}
-              height={60}
-              alt="desktop-logo"
-              priority
-              className="w-[150px] h-auto object-contain"
-            />
-          </div>
+          <Image
+            src="/images/web-logo.png"
+            width={150}
+            height={60}
+            alt="desktop-logo"
+            priority
+            className="w-[150px] h-auto object-contain"
+          />
         </Link>
         <div className="flex flex-1 items-center justify-center max-w-xl px-4">
           <div className="relative w-full">
@@ -245,7 +251,70 @@ export default function Header() {
           </Link>
         </div>
       </div>
+      <div className="container mx-auto flex lg:hidden items-center justify-between p-4">
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button variant="ghost" size="icon">
+              <Menu className="w-6 h-6" />
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left" className="w-80 p-0">
+            <SheetHeader>
+              <SheetTitle className="sr-only"></SheetTitle>
+              <div className="border-b p-4">
+                <Link href="/">
+                  <Image
+                    src="/images/web-logo.png"
+                    width={150}
+                    height={40}
+                    alt="mobile-logo"
+                    className="w-auto h-10"
+                  />
+                </Link>
+              </div>
+              <MenuItems classname="py-2" />
+            </SheetHeader>
+          </SheetContent>
+        </Sheet>
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/images/web-logo.png"
+            width={450}
+            height={100}
+            alt="desktop-logo"
+            priority
+            className="w-20 md:w-auto h-6 md:h-10"
+          />
+        </Link>
+        <div className="flex flex-1 items-center justify-center max-w-xl px-4">
+          <div className="relative w-full">
+            <Input
+              type="text"
+              placeholder="Search books"
+              className="w-full pr-10"
+            />
+            <Button
+              size="icon"
+              variant="ghost"
+              className="absolute right-0 top-1/2 -translate-y-1/2"
+            >
+              <Search className="h-5 w-5" />
+            </Button>
+          </div>
+        </div>
+        <Link href="/checkout/cart">
+          <div className="relative">
+            <Button variant="ghost">
+              <ShoppingCart className="h-5 w-5 mr-2" />
+            </Button>
+            {user && (
+              <span className="absolute top-2 left-5 transform translate-x-1/2 -translate-y-1/2 bg-red-500 text-white rounded-full px-1 text-xs">
+                3
+              </span>
+            )}
+          </div>
+        </Link>
+      </div>
     </header>
   );
 }
-157
