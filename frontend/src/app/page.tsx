@@ -1,6 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import {
+  ArrowRight,
   BookOpen,
   Camera,
   CreditCard,
@@ -16,6 +17,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import NewBooks from "./components/NewBooks";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function Home() {
   const bannerImages = [
@@ -177,14 +179,110 @@ export default function Home() {
       </Button>
       <section className="py-16 bg-amber-50 mt-10">
         <div className="container mx-auto px-4">
-          <div className="text-center font-bold mb-4">
+          <div className="text-center mb-4">
             <h2 className="text-3xl font-bold mb-4">
               How to SELL your old books online on BookKart ?
             </h2>
+            <p className="text-gray-600 m-w-2xl mx-auto">
+              Save some good amount of money by buying used books in just 3steps
+              awayr from you :)
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8 relative">
+            <div className="hidden md:block absolute top-1/2 left-1/4 right-1/4 h-0.5 border-t-2 border-dashed border-gray-300 -z-10" />
+            {sellSteps.map((step, index) => (
+              <div key={index} className="flex flex-col relative h-full">
+                <div className="bg-white rounded-xl p-8 shadow-lg text-center flex-grow flex flex-col">
+                  <div className="absolute top-2 left-14 -translate-x-1/2 bg-yellow-400 text-gray-900 px-4 py-1 rounded-full text-sm font-medium z-10">
+                    {step.step}
+                  </div>
+                  <div className="w-16 h-16 mx-auto bg-primary/10 rounded-full flex item-center justify-center">
+                    {step.icon}
+                  </div>
+                  <h3 className="text-semibold mb-2">{step.title}</h3>
+                  <p className="text-gray-600 text-sm flex-grow">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
-      How to buy section
+
+      <section className="py-16 bg-gradient-to-b from-gray-50 to-white mt-10">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-4">
+            <h2 className="text-3xl font-bold mb-4">
+              How to BUY second hand books online on BookKart ?
+            </h2>
+            <p className="text-gray-600 m-w-2xl mx-auto">
+              Save some good amount of money by buying used books in just 3steps
+              awayr from you :)
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8 relative">
+            <div className="hidden md:block absolute top-1/2 left-1/4 right-1/4 h-0.5 border-t-2 border-dashed border-gray-300 -z-10" />
+            {buySteps.map((step, index) => (
+              <div key={index} className="flex flex-col relative h-full">
+                <div className="bg-yellow-400 rounded-xl p-8 shadow-lg text-center flex-grow flex flex-col">
+                  <div className="absolute top-2 left-14 -translate-x-1/2 bg-white text-gray-900 px-4 py-1 rounded-full text-sm font-medium z-10">
+                    {step.step}
+                  </div>
+                  <div className="w-16 h-16 mx-auto bg-primary/10 rounded-full flex item-center justify-center">
+                    {step.icon}
+                  </div>
+                  <h3 className="text-semibold mb-2">{step.title}</h3>
+                  <p className="text-gray-600 text-sm flex-grow">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      {/* Blog Post */}
+      <section className="py-16 bg-[rgb(221, 234,254)]">
+        <div className="container mx-auto p-4">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            Read from Our <span className="text-primary">Blog</span>
+          </h2>
+
+          <div className="grid grid-cols-3 gap-8">
+            {blogPosts.map((post, index) => (
+              <Card
+                key={index}
+                className="h-full flex flex-col overflow-hidden transition-all duration-300 hover:shadow-lg"
+              >
+                <CardContent className="p-0 h-full flex flex-col">
+                  <div className="relative overflow-hidden h-48">
+                    <Image
+                      src={post.imageSrc}
+                      alt={post.title}
+                      layout="fill"
+                      objectFit="cover"
+                      className="transition transform duration-300 hover:scale-105"
+                    />
+                  </div>
+                  <div className="p-6 fle flex-col flex-grow">
+                    <h3 className="text-xl font-semibold mb-2 flex items-center gap-2">
+                      <div className="bg-primary/10 p-2 rounded-full">
+                        {post.icon}
+                      </div>
+                      <span className="flex-grow">{post.title}</span>
+                    </h3>
+                    <p className="text-gray-600 text-sm flex-grow">
+                      {post.description}
+                    </p>
+                    <Button variant="link" className="flex items-center p-0 mt-4 text-primary">Read More <ArrowRight className="w-4 h-4"/> </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
