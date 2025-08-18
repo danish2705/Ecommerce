@@ -1,13 +1,11 @@
+"use client"
+import { useParams } from "next/navigation";
 import React from "react";
 
-type Props = {
-  params: {
-    id: string;
-  };
-};
 
 
-export default function Id({ params } : Props ) {
-  const id = params.id;
+export default function Id() {
+  const params = useParams()
+  const id = params.id
   return <div>id : {id}</div>;
 }
