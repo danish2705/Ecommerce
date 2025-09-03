@@ -34,6 +34,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import AuthPage from "./AuthPage";
 
 export default function Header() {
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
@@ -315,6 +316,7 @@ export default function Header() {
           </div>
         </Link>
       </div>
+      <AuthPage isLoginOpen={isLoginOpen} setIsLoginOpen={handleLoginClick} />
     </header>
   );
 }
